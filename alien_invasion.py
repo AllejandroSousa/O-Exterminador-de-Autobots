@@ -10,7 +10,7 @@ def run_game():
     screen = pygame.display.set_mode((oea_settings.screen_width, oea_settings.screen_height))
     pygame.display.set_caption("O Exterminador de Autobots")
 
-    ship = Ship(screen)
+    ship = Ship(oea_settings ,screen)
 
     #Initialize the principal loop of the game
     while True:
