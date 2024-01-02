@@ -1,0 +1,8 @@
+In the O Exterminador de Autobots, the player controls a spaceship that appears 
+at the bottom center of the screen. The player can move the spaceship left and right
+using the arrow keys and shoot using the spacebar. When the game begins, a fleet
+of aliens fill the sky and moves across the screen from side to side and downward.
+If the player hits all the aliens, a new fleet, which will move more quickly than
+the previous fleet, will appear. If some alien hits the player's spaceship or 
+reach the bottom of the screen, the player will lose a spaceship. If the player
+loses three spaceships, game over. 
