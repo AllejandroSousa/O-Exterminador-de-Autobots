@@ -3,7 +3,7 @@ import pygame
 class Ship():
 
     def __init__(self, oea_settings, screen):
-        """Initialize the spaceship and defines your initial position"""
+        """Initialize the spaceship and defines your initial position."""
         self.screen = screen
         self.oea_settings = oea_settings
 
@@ -20,7 +20,7 @@ class Ship():
         self.moving_left = False
 
     def update(self):
-        """Update the spaceship's position according to the moviment flag"""
+        """Update the spaceship's position according to the moviment flag."""
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.center += self.oea_settings.ship_speed_factor
         if self.moving_left and self.rect.left > 0:
@@ -29,5 +29,5 @@ class Ship():
         self.rect.centerx = self.center
 
     def blitme(self):
-        """Draw the spaceship in your current position"""
+        """Draw the spaceship in your current position."""
         self.screen.blit(self.image, self.rect)
