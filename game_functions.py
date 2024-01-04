@@ -87,4 +87,22 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+def check_fleet_edges(oea_settings, aliens):
+    """Responds appropriately if some alien reachs an edge."""
+    for alien in aliens.sprites():
+        if alien.check_edges():
+            change_fleet_direction(oea_settings, aliens)
+            break
+
+def change_fleet_direction(oea_settings, aliens):
+    """Makes the entire fleet descend and changes its direction."""
+    for alien in aliens.sprites():
+        alien.rect.y += oea_settings.fleet_drop_speed
+    oea_settings.fleet_direction *= -1
+
+def update_aliens(oea_settings, aliens):
+    """Updates the position of all the aliens of the fleet."""
+    check_fleet_edges(oea_settings, aliens)
+    aliens.update()
     
