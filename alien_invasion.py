@@ -1,7 +1,6 @@
 import pygame
 from settings import Settings
 from ship import Ship
-from alien import Alien
 import game_functions as gf
 from pygame.sprite import Group
 
@@ -16,7 +15,7 @@ def run_game():
     bullets = Group()
     aliens = Group()
 
-    gf.create_fleet(oea_settings, screen, aliens)
+    gf.create_fleet(oea_settings, screen, ship, aliens)
 
     #Initialize the principal loop of the game
     while True:
