@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 import pygame
 from bullet import Bullet
 from alien import Alien
@@ -80,13 +81,23 @@ def update_screen(oea_settings, screen, ship, aliens, bullets):
 
     pygame.display.flip()
 
-def update_bullets(bullets):
+def update_bullets(oea_settings, screen, ship, aliens, bullets):
     """Update the projectile's position and remove the old projectiles."""
     bullets.update()
 
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+    
+    check_bullet_alien_collisions(oea_settings, screen, ship, aliens, bullets)
+
+def check_bullet_alien_collisions(oea_settings, screen, ship, aliens, bullets):
+    """Responds to collisions between projectiles and aliens."""
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+
+    if len(aliens) == 0:
+        bullets.empty()
+        create_fleet(oea_settings, screen, ship, aliens)
 
 def check_fleet_edges(oea_settings, aliens):
     """Responds appropriately if some alien reachs an edge."""
@@ -101,8 +112,32 @@ def change_fleet_direction(oea_settings, aliens):
         alien.rect.y += oea_settings.fleet_drop_speed
     oea_settings.fleet_direction *= -1
 
-def update_aliens(oea_settings, aliens):
+def ship_hit(oea_settings, stats, screen, ship, aliens, bullets):
+    """"Responds to the fact that the spaceship has been hit by an alien."""
+    if stats.ships_left > 0:
+        stats.ships_left -= 1
+        aliens.empty()
+        bullets.empty()
+        create_fleet(oea_settings, screen, ship, aliens)
+        ship.center_ship()
+        sleep(0.5)
+    else:
+        stats.game_active = False
+
+def check_aliens_bottom(oea_settings, stats, screen, ship, aliens, bullets):
+    """Verify if any aliens reachs the bottom of the screen."""
+    screen_rect = screen.get_rect()
+    for alien in aliens.sprites():
+        if alien.rect.bottom >= screen_rect.bottom:
+            ship_hit(oea_settings, stats, screen, ship, aliens, bullets)
+            break
+
+def update_aliens(oea_settings, stats, screen, ship, aliens, bullets):
     """Updates the position of all the aliens of the fleet."""
     check_fleet_edges(oea_settings, aliens)
     aliens.update()
+
+    if pygame.sprite.spritecollideany(ship, aliens):
+        ship_hit(oea_settings, stats, screen, ship, aliens, bullets)
     
+    check_aliens_bottom(oea_settings, stats, screen, ship, aliens, bullets)
