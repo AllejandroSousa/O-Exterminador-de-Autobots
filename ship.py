@@ -31,3 +31,7 @@ class Ship():
     def blitme(self):
         """Draw the spaceship in your current position."""
         self.screen.blit(self.image, self.rect)
+
+    def center_ship(self):
+        """Centralize the spaceship on the screen."""
+        self.center = self.screen_rect.centerx    
