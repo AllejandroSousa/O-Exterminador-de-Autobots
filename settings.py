@@ -2,7 +2,7 @@ class Settings():
     """A class to store all the settings of O Exterminador de Autobots."""
 
     def __init__(self):
-        """Initialize the game's settings."""
+        """Initialize the game settings."""
         self.screen_width = 1000
         self.screen_height = 600
         self.bg_color = (230, 230, 230)
@@ -27,7 +27,7 @@ class Settings():
         self.fleet_direction = 1
 
     def increase_speed(self):
-        """Increase the speed's settings."""
+        """Increase the speed settings."""
         self.ship_speed_factor *= self.speed_up_scale
         self.bullet_speed_factor *= self.speed_up_scale
         self.alien_speed_factor *= self.speed_up_scale
