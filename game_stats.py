@@ -5,7 +5,7 @@ class GameStats():
         """Initialize the statitical data"""
         self.oea_settings = oea_settings
         self.reset_stats()
-        self.game_active = True
+        self.game_active = False
 
     def reset_stats(self):
         """Initialize the statistical data that may change during the game."""
