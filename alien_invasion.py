@@ -1,6 +1,7 @@
 import pygame
 from settings import Settings
 from game_stats import GameStats
+from scoreboard import Scoreboard
 from button import Button
 from ship import Ship
 import game_functions as gf
@@ -15,6 +16,7 @@ def run_game():
 
     play_button = Button(oea_settings, screen, "Play")
     stats = GameStats(oea_settings)
+    sb = Scoreboard(oea_settings, screen, stats)
 
     ship = Ship(oea_settings ,screen)
     bullets = Group()
@@ -30,7 +32,7 @@ def run_game():
             gf.update_bullets(oea_settings, screen, ship, aliens, bullets)
             gf.update_aliens(oea_settings, stats, screen, ship, aliens, bullets)
             
-        gf.update_screen(oea_settings, screen, stats, ship, aliens, bullets, play_button)
+        gf.update_screen(oea_settings, screen, stats, sb, ship, aliens, bullets, play_button)
 
 run_game()
             

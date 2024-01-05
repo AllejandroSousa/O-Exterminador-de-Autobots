@@ -90,7 +90,7 @@ def check_play_button(oea_settings, screen, stats, play_button, ship, aliens, bu
         create_fleet(oea_settings, screen, ship, aliens)
         ship.center_ship()
   
-def update_screen(oea_settings, screen, stats, ship, aliens, bullets, play_button):
+def update_screen(oea_settings, screen, stats, sb, ship, aliens, bullets, play_button):
     """Update the images on the screen and changes to the new screen."""
     screen.fill(oea_settings.bg_color)
     for bullet in bullets.sprites():
@@ -98,6 +98,8 @@ def update_screen(oea_settings, screen, stats, ship, aliens, bullets, play_butto
     ship.blitme()
     aliens.draw(screen)
 
+    sb.show_score()
+    
     if not stats.game_active:
         play_button.draw_button()
 

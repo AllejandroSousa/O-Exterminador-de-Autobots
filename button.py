@@ -3,7 +3,7 @@ import pygame.font
 class Button():
 
     def __init__(self, oea_settings, screen, msg):
-        """Initialize the button's atributtes."""
+        """Initialize the button attributtes."""
         self.screen = screen
         self.screen_rect = screen.get_rect()
 
