@@ -10,7 +10,8 @@ class Alien(Sprite):
         self.screen = screen
         self.oea_settings = oea_settings
 
-        self.image = pygame.image.load('projetos/o_exterminador_de_autobots/images/alien.bmp')
+        self.image = pygame.image.load('projetos/o_exterminador_de_autobots/images/alien.bmp').convert()
+        self.image.set_colorkey((230, 230, 230))
         self.rect = self.image.get_rect()
 
         self.rect.x = self.rect.width
