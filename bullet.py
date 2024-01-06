@@ -6,7 +6,9 @@ class Bullet(Sprite):
 
     def __init__(self, oea_settings, screen, ship):
         """Create an object to the projectile in the spaceship current position."""
+        pygame.mixer.init()
         super(Bullet, self).__init__()
+        self.laser_sound = pygame.mixer.music.load('projetos/o_exterminador_de_autobots/sounds/laser.mp3')
         self.screen = screen
 
         self.rect = pygame.Rect(0, 0, oea_settings.bullet_width, oea_settings.bullet_height)
@@ -26,3 +28,6 @@ class Bullet(Sprite):
     def draw_bullet(self):
         """Draw the projectile on the screen."""
         pygame.draw.rect(self.screen, self.color, self.rect)
+    
+    def play_fire_sound(self):
+        pygame.mixer.music.play()
